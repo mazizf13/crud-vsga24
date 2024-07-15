@@ -22,7 +22,7 @@ function create_barang($post) {
   $jumlah = mysqli_real_escape_string($db, $post['jumlah']);
   $harga = mysqli_real_escape_string($db, $post['harga']);
 
-  $query = "INSERT INTO barang (nama, jumlah, harga, created_at) VALUES ('$nama', '$jumlah', '$harga', CURRENT_TIMESTAMP())";
+  $query = "INSERT INTO barang (nama, jumlah, harga, tanggal) VALUES ('$nama', '$jumlah', '$harga',  CURRENT_TIMESTAMP())";
 
   mysqli_query($db, $query);
 
@@ -39,6 +39,19 @@ function update_barang($post) {
   $harga = mysqli_real_escape_string($db, $post['harga']);
 
   $query = "UPDATE barang SET nama = '$nama', jumlah = '$jumlah', harga = '$harga' WHERE id_barang = $id_barang";
+
+  mysqli_query($db, $query);
+
+  return mysqli_affected_rows($db);
+}
+
+// Function to delete data
+function delete_barang($id_barang) {
+  global $db;
+
+  $id_barang = (int)$id_barang;
+
+  $query = "DELETE FROM barang WHERE id_barang = $id_barang";
 
   mysqli_query($db, $query);
 
