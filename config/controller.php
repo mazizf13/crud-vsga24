@@ -117,7 +117,18 @@ function upload_file() {
   $nama_file_baru .= $extensifile;
   move_uploaded_file($tmp_name, 'assets/img/' . $nama_file_baru);
   return $nama_file_baru;
+}
 
-  
+// Function to delete student
+function delete_mahasiswa($id_mahasiswa) {
+  global $db;
+
+  $id_mahasiswa = (int)$id_mahasiswa;
+
+  $query = "DELETE FROM mahasiswa WHERE id_mahasiswa = $id_mahasiswa";
+
+  mysqli_query($db, $query);
+
+  return mysqli_affected_rows($db);
 }
 ?>
