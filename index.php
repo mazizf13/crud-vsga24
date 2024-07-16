@@ -1,4 +1,5 @@
 <?php 
+$title = 'Daftar Barang';
 include 'layout/header.php';
 
 $data_barang = select('SELECT * FROM barang ORDER BY id_barang DESC');
@@ -32,7 +33,7 @@ $data_barang = select('SELECT * FROM barang ORDER BY id_barang DESC');
             <td><?= htmlspecialchars($barang['jumlah']); ?></td>
             <td>Rp <?= number_format($barang['harga'], 0, ',', '.'); ?></td>
             <td><?= date('d-m-Y | H:i:s', strtotime($barang['tanggal'])); ?></td>
-            <td width="15%">
+            <td width="15%" class="text-center">
               <a href="ubah-barang.php?id_barang=<?= $barang['id_barang']; ?>" class="btn btn-warning">Ubah</a>
               <a href="hapus-barang.php?id_barang=<?= $barang['id_barang']; ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus barang ini?')">Hapus</a>
             </td>

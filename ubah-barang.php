@@ -1,4 +1,5 @@
 <?php 
+$title = 'Ubah Barang';
 include 'layout/header.php'; 
 
 // get id from url

@@ -1,5 +1,6 @@
 <?php 
-include 'layout/header.php'; 
+$title = 'Tambah Barang';
+include 'layout/header.php';
 
 if(isset($_POST['tambah'])) {
   if (create_barang($_POST) > 0) {

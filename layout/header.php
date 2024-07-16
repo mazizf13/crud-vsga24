@@ -9,7 +9,7 @@ include 'config/app.php';
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>CRUD VSGA</title>
+    <title><?= $title ?></title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -41,7 +41,7 @@ include 'config/app.php';
                 <a class="nav-link" href="index.php">Barang</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Mahasiswa</a>
+                <a class="nav-link" href="mahasiswa.php">Mahasiswa</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Modal</a>
