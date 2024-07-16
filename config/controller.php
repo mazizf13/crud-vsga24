@@ -67,12 +67,57 @@ function create_mahasiswa($post) {
   $prodi = mysqli_real_escape_string($db, $post['prodi']);
   $jk = mysqli_real_escape_string($db, $post['jk']);
   $telepon = mysqli_real_escape_string($db, $post['telepon']);
-  $foto = mysqli_real_escape_string($db, $post['foto']);
+  $foto = upload_file();
+
+  // check upload photo
+  if (!$foto) {
+    return false;
+  }
 
   $query = "INSERT INTO mahasiswa (nama, email, prodi, jk, telepon, foto) VALUES ('$nama', '$email', '$prodi', '$jk', '$telepon', '$foto')";
 
   mysqli_query($db, $query);
 
   return mysqli_affected_rows($db);
+}
+
+// Function to upload file
+function upload_file() {
+  $nama_file = $_FILES['foto']['name'];
+  $ukuran_file = $_FILES['foto']['size'];
+  $error = $_FILES['foto']['error'];
+  $tmp_name = $_FILES['foto']['tmp_name'];
+
+  // check file
+  $extensifileValid = ["jpg", "jpeg", "png"];
+  $extensifile = explode('.', $nama_file);
+  $extensifile = strtolower(end($extensifile));
+  
+  // check extensifile
+  if (!in_array($extensifile, $extensifileValid)) {
+    echo "<script>
+      alert('file tidak valid');
+      document.location.href = 'tambah-mahasiswa.php'
+    </script>";
+    die();
+  }
+
+  // check size
+  if ($ukuran_file > 2048888) {
+    echo "<script>
+      alert('Ukuran file max 2 MB');
+      document.location.href = 'tambah-mahasiswa.php'
+    </script>";
+    die();
+  }
+
+  // generate name
+  $nama_file_baru = uniqid();
+  $nama_file_baru .= '.';
+  $nama_file_baru .= $extensifile;
+  move_uploaded_file($tmp_name, 'assets/img/' . $nama_file_baru);
+  return $nama_file_baru;
+
+  
 }
 ?>

@@ -23,7 +23,7 @@ if(isset($_POST['tambah'])) {
   <h1>Tambah Mahasiswa</h1>
   <hr />
 
-  <form action="" method="post">
+  <form action="" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id_mahasiswa" value="<?= $mahasiswa['id_mahasiswa']; ?>">
     <div class="mb-3">
       <label for="nama" class="form-label">Nama</label>
@@ -54,10 +54,10 @@ if(isset($_POST['tambah'])) {
             <label for="prodi" class="form-label">Program Studi</label>
             <select name="prodi" id="prodi" class="form-control" required>
                 <option value="">-- pilih program studi --</option>
-                <option value="">Teknik Informatika</option>
-                <option value="">Sistem Informasi</option>
-                <option value="">Data Science</option>
-                <option value="">Bisnis Digital</option>
+                <option value="Teknik Informatika">Teknik Informatika</option>
+                <option value="Sistem Informasi">Sistem Informasi</option>
+                <option value="Data Science">Data Science</option>
+                <option value="Bisnis Digital">Bisnis Digital</option>
             </select>
         </div>
 
@@ -86,12 +86,11 @@ if(isset($_POST['tambah'])) {
     <div class="mb-3">
       <label for="foto" class="form-label">Foto</label>
       <input
-        type="text"
+        type="file"
         name="foto"
         class="form-control"
         placeholder="Foto ..."
         id="foto"
-        required
       />
     </div>
     <button type="submit" name="tambah" class="btn btn-primary" style="float: right;">Tambah</button>
