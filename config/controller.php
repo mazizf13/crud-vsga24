@@ -81,6 +81,49 @@ function create_mahasiswa($post) {
   return mysqli_affected_rows($db);
 }
 
+// Function to update student
+function update_mahasiswa($post) {
+  global $db;
+  
+  $id_mahasiswa = (int)$post['id_mahasiswa'];
+  $nama = strip_tags($post['nama']);
+  $email  = strip_tags($post['email']);
+  $prodi = strip_tags($post['prodi']);
+  $jk = strip_tags($post['jk']);
+  $telepon = strip_tags($post['telepon']);
+  $foto_lama = $post['foto_lama'];
+
+  // check upload photo
+  if ($_FILES['foto']['error'] !== 4) {
+    $foto = upload_file();
+    if (!$foto) {
+      return false;
+    }
+  } else {
+    $foto = $foto_lama;
+  }
+  
+  $query = "UPDATE mahasiswa SET nama = '$nama', email = '$email', prodi = '$prodi', jk = '$jk', telepon = '$telepon', foto = '$foto' WHERE id_mahasiswa = $id_mahasiswa";
+  
+  mysqli_query($db, $query);
+  
+  return mysqli_affected_rows($db);
+}
+
+
+// Function to delete student
+function delete_mahasiswa($id_mahasiswa) {
+  global $db;
+
+  $id_mahasiswa = (int)$id_mahasiswa;
+
+  $query = "DELETE FROM mahasiswa WHERE id_mahasiswa = $id_mahasiswa";
+
+  mysqli_query($db, $query);
+
+  return mysqli_affected_rows($db);
+}
+
 // Function to upload file
 function upload_file() {
   $nama_file = $_FILES['foto']['name'];
@@ -117,18 +160,5 @@ function upload_file() {
   $nama_file_baru .= $extensifile;
   move_uploaded_file($tmp_name, 'assets/img/' . $nama_file_baru);
   return $nama_file_baru;
-}
-
-// Function to delete student
-function delete_mahasiswa($id_mahasiswa) {
-  global $db;
-
-  $id_mahasiswa = (int)$id_mahasiswa;
-
-  $query = "DELETE FROM mahasiswa WHERE id_mahasiswa = $id_mahasiswa";
-
-  mysqli_query($db, $query);
-
-  return mysqli_affected_rows($db);
 }
 ?>
