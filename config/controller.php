@@ -22,7 +22,7 @@ function create_barang($post) {
   $jumlah = mysqli_real_escape_string($db, $post['jumlah']);
   $harga = mysqli_real_escape_string($db, $post['harga']);
 
-  $query = "INSERT INTO barang (nama, jumlah, harga, tanggal) VALUES ('$nama', '$jumlah', '$harga',  CURRENT_TIMESTAMP())";
+  $query = "INSERT INTO barang (nama, jumlah, harga, tanggal) VALUES ('$nama', '$jumlah', '$harga', CURRENT_TIMESTAMP())";
 
   mysqli_query($db, $query);
 
@@ -52,6 +52,24 @@ function delete_barang($id_barang) {
   $id_barang = (int)$id_barang;
 
   $query = "DELETE FROM barang WHERE id_barang = $id_barang";
+
+  mysqli_query($db, $query);
+
+  return mysqli_affected_rows($db);
+}
+
+// Function to add student
+function create_mahasiswa($post) {
+  global $db;
+
+  $nama = mysqli_real_escape_string($db, $post['nama']);
+  $email  = mysqli_real_escape_string($db, $post['email']);
+  $prodi = mysqli_real_escape_string($db, $post['prodi']);
+  $jk = mysqli_real_escape_string($db, $post['jk']);
+  $telepon = mysqli_real_escape_string($db, $post['telepon']);
+  $foto = mysqli_real_escape_string($db, $post['foto']);
+
+  $query = "INSERT INTO mahasiswa (nama, email, prodi, jk, telepon, foto) VALUES ('$nama', '$email', '$prodi', '$jk', '$telepon', '$foto')";
 
   mysqli_query($db, $query);
 
