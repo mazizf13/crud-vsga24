@@ -24,7 +24,6 @@ if(isset($_POST['tambah'])) {
   <hr />
 
   <form action="" method="post" enctype="multipart/form-data">
-    <input type="hidden" name="id_mahasiswa" value="<?= $mahasiswa['id_mahasiswa']; ?>">
     <div class="mb-3">
       <label for="nama" class="form-label">Nama</label>
       <input
@@ -89,13 +88,30 @@ if(isset($_POST['tambah'])) {
         type="file"
         name="foto"
         class="form-control"
-        placeholder="Foto ..."
         id="foto"
+        onchange="previewImg()"
       />
+
+      <img src="" alt="preview" width="30%" class="img-thumbnail img-preview mt-3" style="display: none;">
     </div>
     <button type="submit" name="tambah" class="btn btn-primary" style="float: right;">Tambah</button>
   </form>
 </div>
+
+<script>
+  function previewImg() {
+    const img = document.querySelector('#foto');
+    const img_preview = document.querySelector('.img-preview');
+
+    const file_foto = new FileReader();
+    file_foto.readAsDataURL(img.files[0]);
+
+    file_foto.onload = function(e) {
+      img_preview.src = e.target.result;
+      img_preview.style.display = 'block';
+    }
+  }
+</script>
 
 <?php 
 include 'layout/footer.php'; 

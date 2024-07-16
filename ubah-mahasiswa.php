@@ -63,10 +63,10 @@ if(isset($_POST['ubah'])) {
             <select name="prodi" id="prodi" class="form-control" required>
               <?php $prodi = $mahasiswa['prodi']; ?>
                 <option value="">-- pilih program studi --</option>
-                <option value="Teknik Informatika" <?= $prodi = 'Teknik Informatika' ? 'selected' : null ?>>Teknik Informatika</option>
-                <option value="Sistem Informasi" <?= $prodi = 'Sistem Informasi' ? 'selected' : null ?>>Sistem Informasi</option>
-                <option value="Data Science" <?= $prodi = 'Data Science' ? 'selected' : null ?>>Data Science</option>
-                <option value="Bisnis Digital" <?= $prodi = 'Bisnis Digital' ? 'selected' : null ?>>Bisnis Digital</option>
+                <option value="Teknik Informatika" <?= $prodi == 'Teknik Informatika' ? 'selected' : '' ?>>Teknik Informatika</option>
+                <option value="Sistem Informasi" <?= $prodi == 'Sistem Informasi' ? 'selected' : '' ?>>Sistem Informasi</option>
+                <option value="Data Science" <?= $prodi == 'Data Science' ? 'selected' : '' ?>>Data Science</option>
+                <option value="Bisnis Digital" <?= $prodi == 'Bisnis Digital' ? 'selected' : '' ?>>Bisnis Digital</option>
             </select>
         </div>
 
@@ -75,8 +75,8 @@ if(isset($_POST['ubah'])) {
               <select name="jk" id="jk" class="form-control" required>
                 <?php $jk = $mahasiswa['jk']; ?>
                   <option value="">-- pilih jenis kelamin --</option>
-                  <option value="Laki-Laki" <?= $jk = 'Laki-Laki' ? 'selected' : null ?>>Laki-Laki</option>
-                  <option value="Perempuan" <?= $jk = 'Perempuan' ? 'selected' : null ?>>Perempuan</option>
+                  <option value="Laki-Laki" <?= $jk == 'Laki-Laki' ? 'selected' : '' ?>>Laki-Laki</option>
+                  <option value="Perempuan" <?= $jk == 'Perempuan' ? 'selected' : '' ?>>Perempuan</option>
               </select>
         </div>
     </div>
@@ -100,18 +100,30 @@ if(isset($_POST['ubah'])) {
         type="file"
         name="foto"
         class="form-control"
-        placeholder="Foto ..."
-        value="<?= $mahasiswa['foto']; ?>"
         id="foto"
+        onchange="previewImg()"
       />
-      <p>
-        <small>Gambar sebelumnya</small>
-      </p>
-      <img src="assets/img/<?= $mahasiswa['foto']; ?>" alt="foto" width="30%">
+      
+      <img src="assets/img/<?= $mahasiswa['foto']; ?>" alt="preview" width="30%" class="img-thumbnail img-preview mt-3" style="display: block;">
     </div>
     <button type="submit" name="ubah" class="btn btn-primary" style="float: right;">Ubah</button>
   </form>
 </div>
+
+<script>
+  function previewImg() {
+    const img = document.querySelector('#foto');
+    const img_preview = document.querySelector('.img-preview');
+
+    const file_foto = new FileReader();
+    file_foto.readAsDataURL(img.files[0]);
+
+    file_foto.onload = function(e) {
+      img_preview.src = e.target.result;
+      img_preview.style.display = 'block';
+    }
+  }
+</script>
 
 <?php 
 include 'layout/footer.php'; 
