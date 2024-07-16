@@ -18,9 +18,9 @@ function select($query)
 function create_barang($post) {
   global $db;
 
-  $nama = mysqli_real_escape_string($db, $post['nama']);
-  $jumlah = mysqli_real_escape_string($db, $post['jumlah']);
-  $harga = mysqli_real_escape_string($db, $post['harga']);
+  $nama = strip_tags($post['nama']);
+  $jumlah = strip_tags($post['jumlah']);
+  $harga = strip_tags($post['harga']);
 
   $query = "INSERT INTO barang (nama, jumlah, harga, tanggal) VALUES ('$nama', '$jumlah', '$harga', CURRENT_TIMESTAMP())";
 
@@ -34,9 +34,9 @@ function update_barang($post) {
   global $db;
 
   $id_barang = (int)$post['id_barang'];
-  $nama = mysqli_real_escape_string($db, $post['nama']);
-  $jumlah = mysqli_real_escape_string($db, $post['jumlah']);
-  $harga = mysqli_real_escape_string($db, $post['harga']);
+  $nama = strip_tags($post['nama']);
+  $jumlah = strip_tags($post['jumlah']);
+  $harga = strip_tags($post['harga']);
 
   $query = "UPDATE barang SET nama = '$nama', jumlah = '$jumlah', harga = '$harga' WHERE id_barang = $id_barang";
 
@@ -62,11 +62,11 @@ function delete_barang($id_barang) {
 function create_mahasiswa($post) {
   global $db;
 
-  $nama = mysqli_real_escape_string($db, $post['nama']);
-  $email  = mysqli_real_escape_string($db, $post['email']);
-  $prodi = mysqli_real_escape_string($db, $post['prodi']);
-  $jk = mysqli_real_escape_string($db, $post['jk']);
-  $telepon = mysqli_real_escape_string($db, $post['telepon']);
+  $nama = strip_tags($post['nama']);
+  $email  = strip_tags($post['email']);
+  $prodi = strip_tags($post['prodi']);
+  $jk = strip_tags($post['jk']);
+  $telepon = strip_tags($post['telepon']);
   $foto = upload_file();
 
   // check upload photo
