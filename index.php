@@ -11,7 +11,7 @@ $data_barang = select('SELECT * FROM barang ORDER BY id_barang DESC');
 
       <a href="tambah-barang.php" class="btn btn-primary mb-2 mt-2">Tambah</a>
 
-      <table class="table table-bordered table-striped mt-3">
+      <table id="dataTables" class="table table-bordered table-striped mt-3">
         <thead>
           <tr>
             <th>No</th>
