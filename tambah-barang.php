@@ -1,5 +1,7 @@
 <?php 
 
+session_start();
+
 // restrict pages before logging 
 if(!isset($_SESSION["login"])) {
   echo 

@@ -1,3 +1,39 @@
+<?php 
+
+session_start();
+
+$title = "Login";
+include 'config/app.php';
+
+if(isset($_POST['login'])) {
+    // get input username & password
+    $username = mysqli_real_escape_string($db, $_POST['username']);
+    $password = mysqli_real_escape_string($db, $_POST['password']);
+    
+    // check username
+    $result = mysqli_query($db, "SELECT * FROM akun WHERE username = '$username'"); 
+
+    // check password
+    if (mysqli_num_rows($result) == 1) {
+      $hasil = mysqli_fetch_assoc($result);
+
+      if (password_verify($password, $hasil['password'])) {
+        $_SESSION['login'] = true;
+        $_SESSION['id_akun'] = $hasil['id_akun'];
+        $_SESSION['nama'] = $nama;
+        $_SESSION['username'] = $username;
+        $_SESSION['telepon'] = $telepon;
+        $_SESSION['email'] = $email;
+        $_SESSION['level'] = $fetch['level'];
+
+        header("Location: index.php");
+        exit;
+     }
+    }
+    $error = true;
+  }
+?>
+
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
   <head>
@@ -155,20 +191,26 @@
     </div>
 
     <main class="form-signin w-100 m-auto">
-      <form>
+      <form action="" method="post">
         <img class="mb-4 d-block mx-auto" src="assets/img/bootstrap-logo.svg" alt="logo" width="72" height="57">
         <h1 class="h3 mb-3 fw-normal text-center">Admin Login</h1>
 
+        <?php if(isset($error)) : ?>
+          <div class="alert alert-danger text-center" role="alert">
+            <b>Username/Password SALAH</b>
+          </div>  
+        <?php endif; ?>
+
         <div class="form-floating">
-          <input type="text" class="form-control" id="floatingInput" placeholder="Username" required>
+          <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Username" required>
           <label for="floatingInput">Username</label>
         </div>
         <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+          <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
           <label for="floatingPassword">Password</label>
         </div>
 
-        <button class="btn btn-primary w-100 py-2" type="submit">Login</button>
+        <button class="btn btn-primary w-100 py-2" type="submit" name="login">Login</button>
         <p class="mt-5 mb-3 text-body-secondary text-center">Copyright &copy; <span><a href="https://aztyc.com" target="_blank">AzTyc</a> <?= date('Y')  ?></span></p>
       </form>
     </main>

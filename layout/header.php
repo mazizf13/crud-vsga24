@@ -5,7 +5,7 @@ include 'config/app.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
+<html lang="en" data-bs-theme="light">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -47,7 +47,14 @@ include 'config/app.php';
               <li class="nav-item">
                 <a class="nav-link" href="crud-modal.php">Modal</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="logout.php">Keluar</a>
+              </li>
             </ul>
+          </div>
+
+          <div>
+            <a href="#" class="navbar-brand">Hai <?= $_SESSION['username'] ?></a>
           </div>
         </div>
       </nav>

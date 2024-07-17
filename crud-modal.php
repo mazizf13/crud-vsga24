@@ -1,5 +1,7 @@
 <?php 
 
+session_start();
+
 // restrict pages before logging 
 if(!isset($_SESSION["login"])) {
     echo 
@@ -14,7 +16,7 @@ if(!isset($_SESSION["login"])) {
 $title = 'Daftar Akun';
 include 'layout/header.php';
 
-$data_akun = select("SELECT * FROM akun");
+$data_akun = select("SELECT * FROM akun ORDER BY id_akun DESC");
 
 if (isset($_POST['tambah'])) {
     if (create_akun($_POST) > 0) {
