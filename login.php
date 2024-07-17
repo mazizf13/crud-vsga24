@@ -20,11 +20,11 @@ if(isset($_POST['login'])) {
       if (password_verify($password, $hasil['password'])) {
         $_SESSION['login'] = true;
         $_SESSION['id_akun'] = $hasil['id_akun'];
-        $_SESSION['nama'] = $nama;
+        $_SESSION['nama'] = $hasil['nama'];
         $_SESSION['username'] = $username;
-        $_SESSION['telepon'] = $telepon;
-        $_SESSION['email'] = $email;
-        $_SESSION['level'] = $fetch['level'];
+        $_SESSION['telepon'] = $hasil['telepon'];
+        $_SESSION['email'] = $hasil['email'];
+        $_SESSION['level'] = $hasil['level'];
 
         header("Location: index.php");
         exit;
