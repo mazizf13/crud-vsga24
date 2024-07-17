@@ -1,4 +1,16 @@
 <?php 
+
+// restrict pages before logging 
+if(!isset($_SESSION["login"])) {
+  echo 
+    "<script>
+    alert('login dulu dong');
+      document.location.href = 'login.php';
+    </script>";
+
+  exit;
+}
+
 $title = 'Ubah Barang';
 include 'layout/header.php'; 
 
