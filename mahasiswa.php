@@ -8,11 +8,11 @@ $data_mahasiswa = select("SELECT * FROM mahasiswa ORDER BY id_mahasiswa DESC");
 ?>
 
 <div class="container mt-5">
-  <h1>Data Mahasiswa</h1>
+  <h1><i class="bi bi-people"></i> Data Mahasiswa</h1>
 
   <hr>
 
-  <a href="tambah-mahasiswa.php" class="btn btn-primary mb-2 mt-2">Tambah</a>
+  <a href="tambah-mahasiswa.php" class="btn btn-primary mb-2 mt-2"><i class="bi bi-plus-circle"></i> Tambah</a>
 
   <table id="dataTables" class="table table-bordered table-striped mt-3">
     <thead>
@@ -35,10 +35,10 @@ $data_mahasiswa = select("SELECT * FROM mahasiswa ORDER BY id_mahasiswa DESC");
           <td><?= $mahasiswa['prodi']; ?></td>
           <td><?= $mahasiswa['jk']; ?></td>
           <td><?= $mahasiswa['telepon']; ?></td>
-          <td class="text-center" width="15%">
-            <a href="detail-mahasiswa.php?id_mahasiswa=<?= $mahasiswa['id_mahasiswa'] ?>" class="btn btn-secondary btn-sm">Detail</a>
-            <a href="ubah-mahasiswa.php?id_mahasiswa=<?= $mahasiswa['id_mahasiswa'] ?>" class="btn btn-warning btn-sm">Ubah</a>
-            <a href="hapus-mahasiswa.php?id_mahasiswa=<?= $mahasiswa['id_mahasiswa'] ?>" class="btn btn-danger btn-sm" onclick="confirm('Anda yakin ingin menghapus data mahasiswa ini?')">Hapus</a>
+          <td class="text-center" width="20%">
+            <a href="detail-mahasiswa.php?id_mahasiswa=<?= $mahasiswa['id_mahasiswa'] ?>" class="btn btn-secondary btn-sm"><i class="bi bi-eye"></i> Detail</a>
+            <a href="ubah-mahasiswa.php?id_mahasiswa=<?= $mahasiswa['id_mahasiswa'] ?>" class="btn btn-warning btn-sm"><i class="bi bi-pencil-square"></i> Ubah</a>
+            <a href="hapus-mahasiswa.php?id_mahasiswa=<?= $mahasiswa['id_mahasiswa'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Anda yakin ingin menghapus data mahasiswa ini?')"><i class="bi bi-trash"></i> Hapus</a>
           </td>
         </tr>
       <?php endforeach; ?>

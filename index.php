@@ -6,11 +6,11 @@ $data_barang = select('SELECT * FROM barang ORDER BY id_barang DESC');
 
 ?>
     <div class="container mt-5">
-      <h1>Data Barang</h1>
+      <h1><i class="bi bi-list-ul"></i> Data Barang</h1>
 
       <hr>
 
-      <a href="tambah-barang.php" class="btn btn-primary mb-2 mt-2">Tambah</a>
+      <a href="tambah-barang.php" class="btn btn-primary mb-2 mt-2"><i class="bi bi-plus-circle"></i> Tambah</a>
 
       <table id="dataTables" class="table table-bordered table-striped mt-3">
         <thead>
@@ -33,9 +33,9 @@ $data_barang = select('SELECT * FROM barang ORDER BY id_barang DESC');
             <td><?= htmlspecialchars($barang['jumlah']); ?></td>
             <td>Rp <?= number_format($barang['harga'], 0, ',', '.'); ?></td>
             <td><?= date('d-m-Y | H:i:s', strtotime($barang['tanggal'])); ?></td>
-            <td width="15%" class="text-center">
-              <a href="ubah-barang.php?id_barang=<?= $barang['id_barang']; ?>" class="btn btn-warning">Ubah</a>
-              <a href="hapus-barang.php?id_barang=<?= $barang['id_barang']; ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus barang ini?')">Hapus</a>
+            <td width="20%" class="text-center">
+              <a href="ubah-barang.php?id_barang=<?= $barang['id_barang']; ?>" class="btn btn-warning"><i class="bi bi-pencil-square"></i> Ubah</a>
+              <a href="hapus-barang.php?id_barang=<?= $barang['id_barang']; ?>" class="btn btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus barang ini?')"><i class="bi bi-trash"></i> Hapus</a>
             </td>
           </tr>
           <?php endforeach; ?>

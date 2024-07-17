@@ -35,11 +35,11 @@ if (isset($_POST['ubah'])) {
 ?>
 
 <div class="container mt-5">
-    <h1>Data Akun</h1>
+    <h1><i class="bi bi-people"></i> Data Akun</h1>
 
     <hr>
 
-    <a type="button" class="btn btn-primary mb-2 mt-2" data-bs-toggle="modal" data-bs-target="#modalTambahAkun">Tambah</a>
+    <a type="button" class="btn btn-primary mb-2 mt-2" data-bs-toggle="modal" data-bs-target="#modalTambahAkun"><i class="bi bi-plus-circle"></i> Tambah</a>
 
     <table id="dataTables" class="table table-bordered table-striped mt-3">
         <thead>
@@ -65,8 +65,8 @@ if (isset($_POST['ubah'])) {
                 <td><?= $akun['email'] ?></td>
                 <td>************</td>
                 <td class="text-center">
-                    <a type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalUbahAkun<?= $akun['id_akun'] ?>">Ubah</a>
-                    <a type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapusAkun<?= $akun['id_akun'] ?>">Hapus</a>
+                    <a type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modalUbahAkun<?= $akun['id_akun'] ?>"><i class="bi bi-pencil-square"></i> Ubah</a>
+                    <a type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalHapusAkun<?= $akun['id_akun'] ?>"><i class="bi bi-trash"></i> Hapus</a>
                 </td>
             </tr>
             <?php endforeach ?>
