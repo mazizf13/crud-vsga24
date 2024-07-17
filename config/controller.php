@@ -160,9 +160,71 @@ function delete_mahasiswa($id_mahasiswa) {
   mysqli_query($db, $query);
 
   return mysqli_affected_rows($db);
-
-
 }
+
+// Function to create acccount
+function create_akun($post) {
+  global $db;
+
+  $nama = strip_tags($post['nama']);
+  $username = strip_tags($post['username']);
+  $telepon = strip_tags($post['telepon']);
+  $email = strip_tags($post['email']);
+  $password = strip_tags($post['password']);
+  $level = strip_tags($post['level']);
+
+  $password = password_hash($password, PASSWORD_DEFAULT);
+
+  $query = "INSERT INTO akun (nama, username, telepon, email, password, level) VALUES ('$nama', '$username', '$telepon', '$email', '$password', '$level')";
+
+  mysqli_query($db, $query);
+
+  return mysqli_affected_rows($db);
+}
+
+// Function to delete account
+function delete_akun($id_akun) {
+  global $db;
+
+  $query = "DELETE FROM akun WHERE id_akun = $id_akun";
+
+  mysqli_query($db, $query);
+
+  return mysqli_affected_rows($db);
+}
+
+// Function to update account
+function update_akun($post) {
+  global $db;
+
+  $id_akun = (int)$post['id_akun'];
+  $nama = strip_tags($post['nama']);
+  $username = strip_tags($post['username']);
+  $telepon = strip_tags($post['telepon']);
+  $email = strip_tags($post['email']);
+  $level = strip_tags($post['level']);
+  $password = $post['password'];
+
+  if ($password) {
+      $password = password_hash($password, PASSWORD_DEFAULT);
+      $query = "UPDATE akun SET nama = ?, username = ?, telepon = ?, email = ?, password = ?, level = ? WHERE id_akun = ?";
+      $stmt = mysqli_prepare($db, $query);
+      mysqli_stmt_bind_param($stmt, "ssssssi", $nama, $username, $telepon, $email, $password, $level, $id_akun);
+  } else {
+      $query = "UPDATE akun SET nama = ?, username = ?, telepon = ?, email = ?, level = ? WHERE id_akun = ?";
+      $stmt = mysqli_prepare($db, $query);
+      mysqli_stmt_bind_param($stmt, "sssssi", $nama, $username, $telepon, $email, $level, $id_akun);
+  }
+
+  if (mysqli_stmt_execute($stmt)) {
+      mysqli_stmt_close($stmt);
+      return true;  
+  } else {
+      mysqli_stmt_close($stmt);
+      return false; 
+  }
+}
+
 
 
 ?>

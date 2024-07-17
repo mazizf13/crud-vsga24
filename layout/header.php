@@ -5,7 +5,7 @@ include 'config/app.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-bs-theme="dark">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -36,7 +36,7 @@ include 'config/app.php';
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav ms-auto">
               <li class="nav-item">
                 <a class="nav-link" href="index.php">Barang</a>
               </li>
@@ -44,7 +44,7 @@ include 'config/app.php';
                 <a class="nav-link" href="mahasiswa.php">Mahasiswa</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Modal</a>
+                <a class="nav-link" href="crud-modal.php">Modal</a>
               </li>
             </ul>
           </div>
